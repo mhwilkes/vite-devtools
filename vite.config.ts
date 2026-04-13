@@ -1,0 +1,39 @@
+import { defineConfig } from 'vite-plus'
+import { devtools } from '@tanstack/devtools-vite'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import viteReact from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  resolve: { tsconfigPaths: true },
+  plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()],
+  server: { port: 3000 },
+
+  // Oxlint — Rust-based linter, 50-100x faster than ESLint
+  lint: {
+    plugins: ['oxc', 'typescript', 'react'],
+    options: { typeAware: true },
+    rules: {
+      'no-console': ['warn', { allow: ['error', 'warn'] }],
+    },
+  },
+
+  // Oxfmt — Rust-based formatter
+  fmt: {
+    singleQuote: true,
+    semi: false,
+    printWidth: 100,
+    trailingComma: 'all',
+  },
+
+  // Vitest
+  test: {
+    environment: 'jsdom',
+    include: ['src/**/*.test.{ts,tsx}'],
+  },
+
+  // Staged-file checks (runs on git commit)
+  staged: {
+    '*.{ts,tsx,js,jsx}': 'vp check --fix',
+  },
+})
