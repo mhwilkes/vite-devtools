@@ -1,11 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
 
-// ─── Server function: fetch npm weekly download counts ───────────────────────
+// ─── Fetch npm weekly download counts (client-side, CORS-enabled API) ────────
 
 const PACKAGES = ['vite', 'rolldown', 'oxlint', 'vitest', '@tanstack/react-start']
 
-const getNpmDownloads = createServerFn({ method: 'GET' }).handler(async () => {
+async function getNpmDownloads() {
   const results = await Promise.allSettled(
     PACKAGES.map(async (pkg) => {
       const encoded = pkg.startsWith('@') ? pkg.replace('/', '%2F') : pkg
@@ -21,7 +20,7 @@ const getNpmDownloads = createServerFn({ method: 'GET' }).handler(async () => {
       ? r.value
       : { name: PACKAGES[i], downloads: null },
   )
-})
+}
 
 // ─── Route ───────────────────────────────────────────────────────────────────
 
@@ -50,7 +49,7 @@ function EcosystemPage() {
           Weekly downloads
         </h1>
         <p className="mb-8 max-w-xl text-[var(--ink-soft)]">
-          Live npm stats for the Oxide stack packages — fetched server-side via a TanStack Start server function.
+          Live npm stats for the Oxide stack packages — fetched from the npm downloads API on page load.
         </p>
 
         <ul className="m-0 list-none space-y-5 p-0">
