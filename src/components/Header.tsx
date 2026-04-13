@@ -47,6 +47,9 @@ export default function Header() {
           <Link to="/ecosystem" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
             Ecosystem
           </Link>
+          <Link to="/about" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
+            About
+          </Link>
           <a
             href="https://vite.dev"
             className="nav-link"

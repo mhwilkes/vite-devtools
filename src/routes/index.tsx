@@ -1,14 +1,28 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: OxideDashboard })
 
 const STACK = [
   {
+    name: 'vite-plus',
+    label: 'Meta-toolchain',
+    desc: 'One CLI (vp) that orchestrates Vite, Rolldown, OXC, Vitest, and staged hooks from a single vite.config.',
+    badge: 'glue',
+    href: 'https://npmjs.com/package/vite-plus',
+  },
+  {
     name: 'Vite 8',
-    label: 'Bundler',
+    label: 'Dev server',
     desc: 'Rolldown-powered dev server and production builds. Near-instant HMR.',
     badge: 'v8',
     href: 'https://vite.dev',
+  },
+  {
+    name: 'Rolldown',
+    label: 'Bundler core',
+    desc: 'Rust-based Rollup-compatible bundler. Powers Vite 8 production builds.',
+    badge: 'rust',
+    href: 'https://rolldown.rs',
   },
   {
     name: 'Oxlint',
@@ -25,16 +39,9 @@ const STACK = [
     href: 'https://oxc.rs/docs/guide/usage/formatter',
   },
   {
-    name: 'Rolldown',
-    label: 'Bundler core',
-    desc: 'Rust-based Rollup-compatible bundler. Vite 8 uses it under the hood.',
-    badge: 'rust',
-    href: 'https://rolldown.rs',
-  },
-  {
     name: 'TanStack Start',
     label: 'Framework',
-    desc: 'Full-stack React with type-safe routing, server functions, and SSR.',
+    desc: 'Full-stack React with type-safe file-based routing and static prerendering.',
     badge: 'react',
     href: 'https://tanstack.com/start',
   },
@@ -48,14 +55,14 @@ const STACK = [
   {
     name: 'Vitest',
     label: 'Testing',
-    desc: 'Vite-native test runner. Shares config with your build pipeline.',
+    desc: 'Vite-native test runner. Shares config with your build pipeline via vp.',
     badge: 'v3',
     href: 'https://vitest.dev',
   },
   {
     name: 'mise',
     label: 'Runtime mgr',
-    desc: 'Pins Node, pnpm, and any CLI tool versions via .mise.toml.',
+    desc: 'Pins Node, pnpm, and CLI versions via .mise.toml. Works in CI too.',
     badge: 'toml',
     href: 'https://mise.jdx.dev',
   },
@@ -69,23 +76,24 @@ function OxideDashboard() {
         <div className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,oklch(0.72_0.22_25_/_0.18),transparent_66%)]" />
         <div className="pointer-events-none absolute -bottom-20 -right-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,oklch(0.78_0.14_55_/_0.12),transparent_66%)]" />
 
-        <p className="island-kicker mb-4">Oxide — Vite + OXC Starter</p>
+        <p className="island-kicker mb-4">The French Stack — vite means fast</p>
         <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--ink)] sm:text-6xl">
           The fast stack,<br />
           <span className="text-[var(--accent)]">made visible.</span>
         </h1>
         <p className="mb-8 max-w-2xl text-base text-[var(--ink-soft)] sm:text-lg">
-          A full-stack dashboard starter built with TanStack Start, Vite 8 + Rolldown,
-          and the OXC Rust toolchain — oxlint and oxfmt included. OKLCH theming throughout.
+          A full-stack starter built on <strong className="text-[var(--ink)]">vite-plus</strong> — one config,
+          one CLI (<code className="font-mono text-sm">vp</code>) that wires together Vite 8, Rolldown, OXC,
+          Vitest, TanStack Start, and mise. Everything Rust where it counts.
         </p>
 
         <div className="flex flex-wrap gap-3">
-          <a
-            href="/ecosystem"
+          <Link
+            to="/ecosystem"
             className="rounded-full border border-[oklch(0.72_0.22_25_/_0.30)] bg-[oklch(0.72_0.22_25_/_0.12)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[oklch(0.72_0.22_25_/_0.20)]"
           >
             Ecosystem Stats →
-          </a>
+          </Link>
           <a
             href="https://github.com/mhwilkes/vite-devtools"
             target="_blank"
@@ -100,7 +108,7 @@ function OxideDashboard() {
       {/* Stack grid */}
       <section className="mt-8">
         <p className="island-kicker mb-4">The Stack</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {STACK.map(({ name, label, desc, badge, href }, i) => (
             <a
               key={name}
@@ -132,19 +140,19 @@ function OxideDashboard() {
             <pre className="m-0 overflow-x-auto rounded-xl border border-[var(--line)] bg-[var(--sand)] p-4 font-mono text-xs text-[var(--ink-soft)]">
               <code>{`git clone github.com/mhwilkes/vite-devtools
 cd vite-devtools
-mise install     # pins Node 24 + pnpm
+mise install     # pins Node 24 + pnpm 10
 pnpm install
 pnpm dev         # → localhost:3000`}</code>
             </pre>
           </div>
           <div>
-            <h3 className="mb-2 text-sm font-semibold text-[var(--ink)]">Toolchain commands</h3>
+            <h3 className="mb-2 text-sm font-semibold text-[var(--ink)]">vp commands (via pnpm)</h3>
             <pre className="m-0 overflow-x-auto rounded-xl border border-[var(--line)] bg-[var(--sand)] p-4 font-mono text-xs text-[var(--ink-soft)]">
-              <code>{`pnpm lint        # oxlint (Rust, ~50ms)
-pnpm fmt         # oxfmt  (Rust, ~30ms)
-pnpm test        # vitest
-pnpm build       # rolldown production build
-pnpm typecheck   # tsc --noEmit`}</code>
+              <code>{`pnpm lint        # vp lint  → oxlint  (~50ms)
+pnpm fmt         # vp fmt   → oxfmt   (~30ms)
+pnpm test        # vp test  → vitest
+pnpm build       # vp build → rolldown
+pnpm check       # vp check → lint + fmt + types`}</code>
             </pre>
           </div>
         </div>

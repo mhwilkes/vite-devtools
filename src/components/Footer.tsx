@@ -12,17 +12,21 @@ export default function Footer() {
           . MIT License.
         </p>
         <p className="island-kicker m-0">
-          Built with{' '}
+          {'The French Stack · '}
+          <a href="https://npmjs.com/package/vite-plus" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
+            vite-plus
+          </a>
+          {' + '}
           <a href="https://vite.dev" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
-            Vite
+            Vite 8
           </a>
           {' + '}
           <a href="https://oxc.rs" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
             OXC
           </a>
           {' + '}
-          <a href="https://tanstack.com/start" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
-            TanStack
+          <a href="https://mise.jdx.dev" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
+            mise
           </a>
         </p>
       </div>
