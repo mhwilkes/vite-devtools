@@ -66,50 +66,68 @@ function About() {
       <section className="island-shell rounded-2xl p-6 sm:p-8">
         <p className="island-kicker mb-3">If you use Vite + React/Solid today</p>
         <p className="mb-6 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
-          Your current toolchain probably looks something like this. Every tool installed and
-          configured separately, each with its own file, its own plugin chain, its own update cycle.
+          Wherever you're starting from — ESLint/Prettier or already on Biome — the French Stack
+          consolidates what's left into a single config and adds the pieces you're probably missing.
         </p>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-3">
           <div>
-            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--ink-soft)] font-mono">What you have now</h3>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--ink-soft)] font-mono">ESLint + Prettier era</h3>
             <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
               {[
-                ['ESLint', 'npm i eslint @typescript-eslint/... + .eslintrc'],
-                ['Prettier', 'npm i prettier + .prettierrc + editor plugin'],
+                ['ESLint', '.eslintrc + @typescript-eslint/*'],
+                ['Prettier', '.prettierrc + editor plugin'],
                 ['Vitest', 'npm i vitest + vitest.config.ts'],
-                ['.nvmrc', 'Pinned Node version — but only if everyone remembers'],
-                ['vite.config.ts', 'Vite — already here'],
+                ['.nvmrc', 'pinned Node — if everyone remembers'],
+                ['vite.config.ts', 'Vite'],
               ].map(([tool, note]) => (
                 <li key={tool} className="flex gap-3">
                   <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-[var(--line)]" />
                   <span>
                     <span className="font-mono font-medium text-[var(--ink)]">{tool}</span>
-                    <span className="text-xs ml-2 text-[var(--ink-soft)]">{note}</span>
+                    <span className="block text-xs text-[var(--ink-soft)] opacity-70">{note}</span>
                   </span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--warm)] font-mono">Biome era</h3>
+            <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
+              {[
+                ['biome.json', 'lint + fmt — fast, but still separate'],
+                ['Vitest', 'vitest.config.ts still needed'],
+                ['.nvmrc', 'still no runtime enforcement'],
+                ['vite.config.ts', 'Vite — not connected to Biome'],
+              ].map(([tool, note]) => (
+                <li key={tool} className="flex gap-3">
+                  <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-[var(--warm)] opacity-60" />
+                  <span>
+                    <span className="font-mono font-medium text-[var(--ink)]">{tool}</span>
+                    <span className="block text-xs text-[var(--ink-soft)] opacity-70">{note}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs text-[var(--ink-soft)] opacity-60 font-mono">Rust speed ✓ · still fragmented ✗</p>
+          </div>
+          <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] font-mono">French Stack</h3>
             <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
               {[
                 ['vite.config.ts', 'lint, fmt, test, staged hooks — all here'],
-                ['.mise.toml', 'Node + pnpm pinned, works in CI automatically'],
-                ['tsconfig.json', 'Still here, still yours'],
+                ['.mise.toml', 'Node + pnpm pinned, CI included'],
+                ['tsconfig.json', 'still here, still yours'],
               ].map(([tool, note]) => (
                 <li key={tool} className="flex gap-3">
                   <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-[var(--accent)]" />
                   <span>
                     <span className="font-mono font-medium text-[var(--ink)]">{tool}</span>
-                    <span className="text-xs ml-2 text-[var(--ink-soft)]">{note}</span>
+                    <span className="block text-xs text-[var(--ink-soft)] opacity-70">{note}</span>
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-[var(--ink-soft)] font-mono">
-              + oxlint runs in ~50ms · oxfmt in ~30ms · mise keeps CI and dev in sync
-            </p>
+            <p className="mt-3 text-xs text-[var(--accent)] font-mono">Rust speed ✓ · unified ✓ · runtime pinned ✓</p>
           </div>
         </div>
       </section>
@@ -145,8 +163,8 @@ function About() {
                 ['vite-plus', 'Meta-toolchain CLI', 'N separate configs', 'one vite.config'],
                 ['Vite 8', 'Dev server', 'webpack / parcel', 'instant HMR'],
                 ['Rolldown', 'Bundle engine', 'esbuild / rollup', 'Rust-native'],
-                ['Oxlint', 'Linter', 'ESLint + plugins', '50-100× faster'],
-                ['Oxfmt', 'Formatter', 'Prettier', '30× faster'],
+                ['Oxlint', 'Linter', 'ESLint + plugins / Biome lint', '50-100× faster'],
+                ['Oxfmt', 'Formatter', 'Prettier / Biome fmt', '30× faster'],
                 ['TanStack Start', 'Framework', 'Next.js / Remix', 'React + Solid'],
                 ['Tailwind v4', 'Styling', 'tailwind.config.js', 'CSS-first, no config file'],
                 ['Vitest 4', 'Test runner', 'Jest', 'Vite-native'],
