@@ -6,13 +6,24 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  base: '/vite-devtools/',
   resolve: { tsconfigPaths: true },
   environments: {
     ssr: {
       dev: { createEnvironment: (name, config) => createRunnableDevEnvironment(name, config) },
     },
   },
-  plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()],
+  plugins: [
+    devtools(),
+    tailwindcss(),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+        crawlLinks: true,
+      },
+    }),
+    viteReact(),
+  ],
   server: { port: 3000 },
 
   // Oxlint — Rust-based linter, 50-100x faster than ESLint
