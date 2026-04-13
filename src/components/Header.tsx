@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import ThemeToggle from './ThemeToggle'
+import { OxideMark } from './OxideMascot'
 
 export default function Header() {
   return (
@@ -11,11 +12,7 @@ export default function Header() {
             to="/"
             className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm text-[var(--ink)] no-underline shadow-[0_8px_24px_oklch(0.15_0.020_270_/_0.08)] sm:px-4 sm:py-2"
           >
-            {/* Oxide logo mark — two overlapping circles like an atom */}
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <circle cx="6.5" cy="9" r="5" stroke="var(--accent)" strokeWidth="1.5" />
-              <circle cx="11.5" cy="9" r="5" stroke="var(--warm)" strokeWidth="1.5" />
-            </svg>
+            <OxideMark size={22} />
             <span className="font-semibold tracking-tight">Oxide</span>
           </Link>
         </h2>

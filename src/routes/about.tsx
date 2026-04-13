@@ -30,10 +30,10 @@ function About() {
       <section className="island-shell rounded-2xl p-6 sm:p-8">
         <p className="island-kicker mb-2">About</p>
         <h1 className="display-title mb-4 text-4xl font-bold text-[var(--ink)] sm:text-5xl">
-          The French Stack
+          The Oxide Stack
         </h1>
         <p className="max-w-3xl text-base leading-8 text-[var(--ink-soft)]">
-          <em>Vite</em> is French for <em>fast</em>. The French Stack takes that name seriously —
+          <em>Vite</em> is French for <em>fast</em> — and the Oxide Stack takes that seriously —
           every tool chosen because it is the fastest option available, not just a popular one.
           <strong className="text-[var(--ink)]"> vite-plus</strong> acts as the orchestration layer:
           one package, one config file, one CLI (<code className="font-mono text-sm">vp</code>) that
@@ -66,7 +66,7 @@ function About() {
       <section className="island-shell rounded-2xl p-6 sm:p-8">
         <p className="island-kicker mb-3">If you use Vite + React/Solid today</p>
         <p className="mb-6 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
-          Wherever you're starting from — ESLint/Prettier or already on Biome — the French Stack
+          Wherever you're starting from — ESLint/Prettier or already on Biome — the Oxide Stack
           consolidates what's left into a single config and adds the pieces you're probably missing.
         </p>
         <div className="grid gap-6 sm:grid-cols-3">
@@ -111,7 +111,7 @@ function About() {
             <p className="mt-3 text-xs text-[var(--ink-soft)] opacity-60 font-mono">Rust speed ✓ · still fragmented ✗</p>
           </div>
           <div>
-            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] font-mono">French Stack</h3>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] font-mono">Oxide Stack</h3>
             <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
               {[
                 ['vite.config.ts', 'lint, fmt, test, staged hooks — all here'],

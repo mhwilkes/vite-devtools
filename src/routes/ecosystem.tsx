@@ -54,7 +54,7 @@ function EcosystemPage() {
           Weekly downloads
         </h1>
         <p className="mb-8 max-w-xl text-[var(--ink-soft)]">
-          Live npm download stats for the French Stack. Vite's numbers show you're already in this
+          Live npm download stats for the Oxide Stack. Vite's numbers show you're already in this
           ecosystem — the rest is just closing the loop.
         </p>
 

@@ -12,7 +12,7 @@ export default function Footer() {
           . MIT License.
         </p>
         <p className="island-kicker m-0">
-          {'The French Stack · '}
+          {'The Oxide Stack · '}
           <a href="https://npmjs.com/package/vite-plus" className="text-[var(--accent)] hover:text-[var(--accent-deep)] no-underline">
             vite-plus
           </a>

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { OxideMascot } from '../components/OxideMascot'
 
 export const Route = createFileRoute('/')({ component: OxideDashboard })
 
@@ -76,40 +77,50 @@ function OxideDashboard() {
         <div className="pointer-events-none absolute -left-20 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,oklch(0.72_0.22_25_/_0.18),transparent_66%)]" />
         <div className="pointer-events-none absolute -bottom-20 -right-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,oklch(0.78_0.14_55_/_0.12),transparent_66%)]" />
 
-        <p className="island-kicker mb-4">The French Stack — vite means fast</p>
-        <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--ink)] sm:text-6xl">
-          You already use Vite.<br />
-          <span className="text-[var(--accent)]">Here's the rest.</span>
-        </h1>
-        <p className="mb-8 max-w-2xl text-base text-[var(--ink-soft)] sm:text-lg">
-          The French Stack takes your existing Vite + React (or Solid) setup and adds{' '}
-          <strong className="text-[var(--ink)]">vite-plus</strong> — one CLI{' '}
-          (<code className="font-mono text-xs">vp</code>) that replaces ESLint, Prettier, and scattered
-          config files with a single <code className="font-mono text-xs">vite.config.ts</code> and a
-          Rust toolchain that's 30-100× faster.
-        </p>
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
+          <div className="flex-1">
+            <p className="island-kicker mb-4">The Oxide Stack</p>
+            <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--ink)] sm:text-6xl">
+              You already use Vite.<br />
+              <span className="text-[var(--accent)]">Here's the rest.</span>
+            </h1>
+            <p className="mb-8 max-w-2xl text-base text-[var(--ink-soft)] sm:text-lg">
+              The Oxide Stack takes your existing Vite + React (or Solid) setup and adds{' '}
+              <strong className="text-[var(--ink)]">vite-plus</strong> — one CLI{' '}
+              (<code className="font-mono text-xs">vp</code>) that replaces ESLint, Prettier, and scattered
+              config files with a single <code className="font-mono text-xs">vite.config.ts</code> and a
+              Rust toolchain that's 30-100× faster.
+            </p>
 
-        <div className="flex flex-wrap gap-3">
-          <Link
-            to="/about"
-            className="rounded-full border border-[oklch(0.72_0.22_25_/_0.30)] bg-[oklch(0.72_0.22_25_/_0.12)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[oklch(0.72_0.22_25_/_0.20)]"
-          >
-            Why this stack →
-          </Link>
-          <Link
-            to="/ecosystem"
-            className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
-          >
-            Ecosystem Stats
-          </Link>
-          <a
-            href="https://github.com/mhwilkes/vite-devtools"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
-          >
-            GitHub ↗
-          </a>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/about"
+                className="rounded-full border border-[oklch(0.72_0.22_25_/_0.30)] bg-[oklch(0.72_0.22_25_/_0.12)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[oklch(0.72_0.22_25_/_0.20)]"
+              >
+                Why this stack →
+              </Link>
+              <Link
+                to="/ecosystem"
+                className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
+              >
+                Ecosystem Stats
+              </Link>
+              <a
+                href="https://github.com/mhwilkes/vite-devtools"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
+              >
+                GitHub ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Mascot */}
+          <div className="flex flex-col items-center gap-2 self-center opacity-90">
+            <OxideMascot size={160} />
+            <p className="font-mono text-xs text-[var(--ink-soft)]">Oxi · the Oxide crab</p>
+          </div>
         </div>
       </section>
 
@@ -131,7 +142,7 @@ tsconfig.node.json     # often needed too`}</code>
             </pre>
           </div>
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-[var(--accent)] uppercase tracking-widest font-mono">After — French Stack</h3>
+            <h3 className="mb-3 text-sm font-semibold text-[var(--accent)] uppercase tracking-widest font-mono">After — Oxide Stack</h3>
             <pre className="m-0 overflow-x-auto rounded-xl border border-[var(--line)] bg-[var(--sand)] p-4 font-mono text-xs text-[var(--ink-soft)]">
               <code>{`vite.config.ts         # everything lives here
 .mise.toml             # replaces .nvmrc + more
