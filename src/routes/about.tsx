@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/about')({
   component: About,
@@ -6,20 +6,20 @@ export const Route = createFileRoute('/about')({
 
 const PRINCIPLES = [
   {
-    title: 'vite-plus is the glue',
-    body: 'A single vite.config.ts and one CLI — vp — drives dev, build, lint, format, test, and staged hooks. No separate eslint config, prettier config, or vitest config files scattered around.',
+    title: 'One config to rule them',
+    body: 'vite-plus extends vite.config.ts with lint, fmt, test, and staged hook blocks. Your eslintrc, prettierrc, and vitest.config all collapse into the file you already have.',
   },
   {
     title: 'Rust where it counts',
-    body: 'Rolldown bundles, Oxlint lints, Oxfmt formats. These are 30-100× faster than their JS equivalents and part of the VoidZero / OXC ecosystem that Vite 8 is built on.',
+    body: 'Rolldown bundles, Oxlint lints, Oxfmt formats — each 30-100× faster than the JS alternative. Not a marginal improvement. You feel it on every save.',
   },
   {
     title: 'mise pins the runtime',
-    body: '.mise.toml locks Node 24 and pnpm 10 for every developer and every CI runner. No more "works on my machine" from version drift.',
+    body: '.mise.toml locks Node and pnpm for every dev and every CI runner. No more "works on my machine" from version drift. One file, zero drift.',
   },
   {
     title: 'Static by default',
-    body: 'TanStack Start prerenders all routes to static HTML at build time. Deployed to GitHub Pages — no server required, free hosting, fast edge delivery.',
+    body: 'TanStack Start prerenders all routes to static HTML at build time. Deployed to GitHub Pages — no server, no cost, global CDN edge delivery out of the box.',
   },
 ]
 
@@ -33,15 +33,85 @@ function About() {
           The French Stack
         </h1>
         <p className="max-w-3xl text-base leading-8 text-[var(--ink-soft)]">
-          <em>Vite</em> is French for <em>fast</em>. The French Stack is a reference starter that takes
-          that name seriously — every tool chosen because it is genuinely the fastest option available.
-          <strong className="text-[var(--ink)]"> vite-plus</strong> ties it all together: one package,
-          one config file, one CLI to rule them.
+          <em>Vite</em> is French for <em>fast</em>. The French Stack takes that name seriously —
+          every tool chosen because it is the fastest option available, not just a popular one.
+          <strong className="text-[var(--ink)]"> vite-plus</strong> acts as the orchestration layer:
+          one package, one config file, one CLI (<code className="font-mono text-sm">vp</code>) that
+          replaces an entire folder of scattered tool configs.
         </p>
         <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--ink-soft)]">
-          Built as a reference for teams adopting the VoidZero / Vite 8 ecosystem. Clone it, strip
-          what you don't need, and ship.
+          If your team already runs Vite with React or SolidJS, this is the natural next step.
+          You keep everything you know — same dev server, same plugin ecosystem — and lose the
+          maintenance burden of five separate config files and two separate linting installs.
         </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            to="/"
+            className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
+          >
+            ← See the stack
+          </Link>
+          <a
+            href="https://github.com/mhwilkes/vite-devtools"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-4 py-2 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
+          >
+            Clone on GitHub ↗
+          </a>
+        </div>
+      </section>
+
+      {/* If you use Vite today */}
+      <section className="island-shell rounded-2xl p-6 sm:p-8">
+        <p className="island-kicker mb-3">If you use Vite + React/Solid today</p>
+        <p className="mb-6 max-w-2xl text-sm leading-7 text-[var(--ink-soft)]">
+          Your current toolchain probably looks something like this. Every tool installed and
+          configured separately, each with its own file, its own plugin chain, its own update cycle.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--ink-soft)] font-mono">What you have now</h3>
+            <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
+              {[
+                ['ESLint', 'npm i eslint @typescript-eslint/... + .eslintrc'],
+                ['Prettier', 'npm i prettier + .prettierrc + editor plugin'],
+                ['Vitest', 'npm i vitest + vitest.config.ts'],
+                ['.nvmrc', 'Pinned Node version — but only if everyone remembers'],
+                ['vite.config.ts', 'Vite — already here'],
+              ].map(([tool, note]) => (
+                <li key={tool} className="flex gap-3">
+                  <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-[var(--line)]" />
+                  <span>
+                    <span className="font-mono font-medium text-[var(--ink)]">{tool}</span>
+                    <span className="text-xs ml-2 text-[var(--ink-soft)]">{note}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] font-mono">French Stack</h3>
+            <ul className="space-y-2 text-sm text-[var(--ink-soft)]">
+              {[
+                ['vite.config.ts', 'lint, fmt, test, staged hooks — all here'],
+                ['.mise.toml', 'Node + pnpm pinned, works in CI automatically'],
+                ['tsconfig.json', 'Still here, still yours'],
+              ].map(([tool, note]) => (
+                <li key={tool} className="flex gap-3">
+                  <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-[var(--accent)]" />
+                  <span>
+                    <span className="font-mono font-medium text-[var(--ink)]">{tool}</span>
+                    <span className="text-xs ml-2 text-[var(--ink-soft)]">{note}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-[var(--ink-soft)] font-mono">
+              + oxlint runs in ~50ms · oxfmt in ~30ms · mise keeps CI and dev in sync
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Principles */}
@@ -60,34 +130,38 @@ function About() {
       {/* Tech table */}
       <section className="island-shell rounded-2xl p-6 sm:p-8">
         <p className="island-kicker mb-4">Full inventory</p>
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-[var(--line)] text-left">
-              <th className="pb-2 font-semibold text-[var(--ink)] pr-6">Tool</th>
-              <th className="pb-2 font-semibold text-[var(--ink)] pr-6">Role</th>
-              <th className="pb-2 font-semibold text-[var(--ink)]">Why</th>
-            </tr>
-          </thead>
-          <tbody className="text-[var(--ink-soft)]">
-            {[
-              ['vite-plus', 'Meta-toolchain CLI', 'Unified vp commands replace 5+ separate tool configs'],
-              ['Vite 8', 'Dev server + bundler', 'Instant HMR, Rolldown-powered production builds'],
-              ['Rolldown', 'Bundle engine', 'Rust-native, Rollup-compatible — default in Vite 8'],
-              ['Oxlint', 'Linter', '50-100× faster than ESLint, Rust-native'],
-              ['Oxfmt', 'Formatter', '30× faster than Prettier, Prettier-compatible'],
-              ['TanStack Start', 'Full-stack framework', 'Type-safe routing, static prerender, React 19'],
-              ['Tailwind v4', 'Styling', 'CSS-first config, OKLCH palette, P3 gamut'],
-              ['Vitest', 'Test runner', 'Vite-native, shares config via vp'],
-              ['mise', 'Runtime manager', 'Pins Node + pnpm versions in .mise.toml'],
-            ].map(([tool, role, why]) => (
-              <tr key={tool} className="border-b border-[var(--line)] last:border-0">
-                <td className="py-2.5 pr-6 font-mono font-medium text-[var(--ink)]">{tool}</td>
-                <td className="py-2.5 pr-6">{role}</td>
-                <td className="py-2.5">{why}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-[var(--line)] text-left">
+                <th className="pb-2 font-semibold text-[var(--ink)] pr-6">Tool</th>
+                <th className="pb-2 font-semibold text-[var(--ink)] pr-6">Role</th>
+                <th className="pb-2 font-semibold text-[var(--ink)] pr-6">Replaces</th>
+                <th className="pb-2 font-semibold text-[var(--ink)]">Speed</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-[var(--ink-soft)]">
+              {[
+                ['vite-plus', 'Meta-toolchain CLI', 'N separate configs', 'one vite.config'],
+                ['Vite 8', 'Dev server', 'webpack / parcel', 'instant HMR'],
+                ['Rolldown', 'Bundle engine', 'esbuild / rollup', 'Rust-native'],
+                ['Oxlint', 'Linter', 'ESLint + plugins', '50-100× faster'],
+                ['Oxfmt', 'Formatter', 'Prettier', '30× faster'],
+                ['TanStack Start', 'Framework', 'Next.js / Remix', 'React + Solid'],
+                ['Tailwind v4', 'Styling', 'tailwind.config.js', 'CSS-first, no config file'],
+                ['Vitest 4', 'Test runner', 'Jest', 'Vite-native'],
+                ['mise', 'Runtime manager', '.nvmrc + nvm', 'all tools, one file'],
+              ].map(([tool, role, replaces, speed]) => (
+                <tr key={tool} className="border-b border-[var(--line)] last:border-0">
+                  <td className="py-2.5 pr-6 font-mono font-medium text-[var(--ink)]">{tool}</td>
+                  <td className="py-2.5 pr-6">{role}</td>
+                  <td className="py-2.5 pr-6 text-xs">{replaces}</td>
+                  <td className="py-2.5 text-xs font-mono text-[var(--accent)]">{speed}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   )

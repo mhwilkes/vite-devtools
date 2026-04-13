@@ -6,63 +6,63 @@ const STACK = [
   {
     name: 'vite-plus',
     label: 'Meta-toolchain',
-    desc: 'One CLI (vp) that orchestrates Vite, Rolldown, OXC, Vitest, and staged hooks from a single vite.config.',
+    desc: 'One CLI (vp) that orchestrates Vite, Rolldown, OXC, Vitest, and staged hooks from a single vite.config. Replaces eslintrc, prettierrc, vitest.config, and more.',
     badge: 'glue',
     href: 'https://npmjs.com/package/vite-plus',
   },
   {
     name: 'Vite 8',
     label: 'Dev server',
-    desc: 'Rolldown-powered dev server and production builds. Near-instant HMR.',
+    desc: 'The same Vite you already know — now with Rolldown as its production bundler. Near-instant HMR, same plugin API.',
     badge: 'v8',
     href: 'https://vite.dev',
   },
   {
     name: 'Rolldown',
     label: 'Bundler core',
-    desc: 'Rust-based Rollup-compatible bundler. Powers Vite 8 production builds.',
+    desc: 'Rust-native Rollup-compatible bundler. Ships as the default in Vite 8 — you get it for free.',
     badge: 'rust',
     href: 'https://rolldown.rs',
   },
   {
     name: 'Oxlint',
     label: 'Linter',
-    desc: '50-100× faster than ESLint. Written in Rust. Zero config to start.',
+    desc: '50-100× faster than ESLint. Rust-native. Replaces your .eslintrc with two lines in vite.config.',
     badge: 'rust',
     href: 'https://oxc.rs/docs/guide/usage/linter',
   },
   {
     name: 'Oxfmt',
     label: 'Formatter',
-    desc: '30× faster than Prettier. Prettier-compatible. Part of the OXC stack.',
+    desc: '30× faster than Prettier. Drop-in compatible. No .prettierrc needed — configured in vite.config.',
     badge: 'rust',
     href: 'https://oxc.rs/docs/guide/usage/formatter',
   },
   {
     name: 'TanStack Start',
     label: 'Framework',
-    desc: 'Full-stack React with type-safe file-based routing and static prerendering.',
+    desc: 'Full-stack React with type-safe file-based routing. Works with both React and SolidJS. Static prerender built in.',
     badge: 'react',
     href: 'https://tanstack.com/start',
   },
   {
     name: 'Tailwind v4',
     label: 'Styling',
-    desc: 'CSS-first config. OKLCH color palette. P3 gamut support built-in.',
+    desc: 'CSS-first config — no tailwind.config.js. OKLCH color palette, P3 gamut, Vite plugin.',
     badge: 'css',
     href: 'https://tailwindcss.com',
   },
   {
-    name: 'Vitest',
+    name: 'Vitest 4',
     label: 'Testing',
-    desc: 'Vite-native test runner. Shares config with your build pipeline via vp.',
-    badge: 'v3',
+    desc: 'Vite-native test runner. No separate config — vp wires it into your vite.config automatically.',
+    badge: 'v4',
     href: 'https://vitest.dev',
   },
   {
     name: 'mise',
     label: 'Runtime mgr',
-    desc: 'Pins Node, pnpm, and CLI versions via .mise.toml. Works in CI too.',
+    desc: 'One .mise.toml pins Node and pnpm for every developer and every CI runner. No more version drift.',
     badge: 'toml',
     href: 'https://mise.jdx.dev',
   },
@@ -78,21 +78,29 @@ function OxideDashboard() {
 
         <p className="island-kicker mb-4">The French Stack — vite means fast</p>
         <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--ink)] sm:text-6xl">
-          The fast stack,<br />
-          <span className="text-[var(--accent)]">made visible.</span>
+          You already use Vite.<br />
+          <span className="text-[var(--accent)]">Here's the rest.</span>
         </h1>
         <p className="mb-8 max-w-2xl text-base text-[var(--ink-soft)] sm:text-lg">
-          A full-stack starter built on <strong className="text-[var(--ink)]">vite-plus</strong> — one config,
-          one CLI (<code className="font-mono text-sm">vp</code>) that wires together Vite 8, Rolldown, OXC,
-          Vitest, TanStack Start, and mise. Everything Rust where it counts.
+          The French Stack takes your existing Vite + React (or Solid) setup and adds{' '}
+          <strong className="text-[var(--ink)]">vite-plus</strong> — one CLI{' '}
+          (<code className="font-mono text-xs">vp</code>) that replaces ESLint, Prettier, and scattered
+          config files with a single <code className="font-mono text-xs">vite.config.ts</code> and a
+          Rust toolchain that's 30-100× faster.
         </p>
 
         <div className="flex flex-wrap gap-3">
           <Link
-            to="/ecosystem"
+            to="/about"
             className="rounded-full border border-[oklch(0.72_0.22_25_/_0.30)] bg-[oklch(0.72_0.22_25_/_0.12)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[oklch(0.72_0.22_25_/_0.20)]"
           >
-            Ecosystem Stats →
+            Why this stack →
+          </Link>
+          <Link
+            to="/ecosystem"
+            className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
+          >
+            Ecosystem Stats
           </Link>
           <a
             href="https://github.com/mhwilkes/vite-devtools"
@@ -100,8 +108,36 @@ function OxideDashboard() {
             rel="noopener noreferrer"
             className="rounded-full border border-[var(--line)] bg-[var(--chip-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--ink)] no-underline transition hover:-translate-y-0.5"
           >
-            View on GitHub
+            GitHub ↗
           </a>
+        </div>
+      </section>
+
+      {/* Before / After */}
+      <section className="island-shell mt-8 rounded-2xl p-6 sm:p-8">
+        <p className="island-kicker mb-3">The upgrade</p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-[var(--ink-soft)] uppercase tracking-widest font-mono">Before — standard Vite project</h3>
+            <pre className="m-0 overflow-x-auto rounded-xl border border-[var(--line)] bg-[var(--sand)] p-4 font-mono text-xs text-[var(--ink-soft)]">
+              <code>{`vite.config.ts
+.eslintrc.cjs          # separate install
+.prettierrc            # separate install
+vitest.config.ts       # separate config
+.nvmrc                 # or .node-version
+.npmrc
+tsconfig.json
+tsconfig.node.json     # often needed too`}</code>
+            </pre>
+          </div>
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-[var(--accent)] uppercase tracking-widest font-mono">After — French Stack</h3>
+            <pre className="m-0 overflow-x-auto rounded-xl border border-[var(--line)] bg-[var(--sand)] p-4 font-mono text-xs text-[var(--ink-soft)]">
+              <code>{`vite.config.ts         # everything lives here
+.mise.toml             # replaces .nvmrc + more
+tsconfig.json`}</code>
+            </pre>
+          </div>
         </div>
       </section>
 

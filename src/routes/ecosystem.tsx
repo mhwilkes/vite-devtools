@@ -2,23 +2,28 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // ─── Fetch npm weekly download counts (client-side, CORS-enabled API) ────────
 
-const PACKAGES = ['vite', 'rolldown', 'oxlint', 'vitest', '@tanstack/react-start']
+const PACKAGES: { name: string; label: string }[] = [
+  { name: 'vite', label: 'Vite' },
+  { name: 'vite-plus', label: 'vite-plus' },
+  { name: 'rolldown', label: 'Rolldown' },
+  { name: 'oxlint', label: 'Oxlint' },
+  { name: 'vitest', label: 'Vitest' },
+  { name: '@tanstack/react-start', label: 'TanStack Start' },
+]
 
 async function getNpmDownloads() {
   const results = await Promise.allSettled(
-    PACKAGES.map(async (pkg) => {
-      const encoded = pkg.startsWith('@') ? pkg.replace('/', '%2F') : pkg
+    PACKAGES.map(async ({ name }) => {
+      const encoded = name.startsWith('@') ? name.replace('/', '%2F') : name
       const res = await fetch(`https://api.npmjs.org/downloads/point/last-week/${encoded}`)
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data = (await res.json()) as { downloads: number; package: string }
-      return { name: pkg, downloads: data.downloads }
+      return { name, downloads: data.downloads }
     }),
   )
 
   return results.map((r, i) =>
-    r.status === 'fulfilled'
-      ? r.value
-      : { name: PACKAGES[i], downloads: null },
+    r.status === 'fulfilled' ? r.value : { name: PACKAGES[i].name, downloads: null },
   )
 }
 
@@ -49,16 +54,19 @@ function EcosystemPage() {
           Weekly downloads
         </h1>
         <p className="mb-8 max-w-xl text-[var(--ink-soft)]">
-          Live npm stats for the Oxide stack packages — fetched from the npm downloads API on page load.
+          Live npm download stats for the French Stack. Vite's numbers show you're already in this
+          ecosystem — the rest is just closing the loop.
         </p>
 
         <ul className="m-0 list-none space-y-5 p-0">
           {stats.map(({ name, downloads }) => {
+            const pkg = PACKAGES.find((p) => p.name === name)
+            const label = pkg?.label ?? name
             const pct = downloads ? Math.round((downloads / max) * 100) : 0
             return (
               <li key={name}>
                 <div className="mb-1.5 flex items-baseline justify-between gap-4">
-                  <span className="font-mono text-sm font-medium text-[var(--ink)]">{name}</span>
+                  <span className="font-mono text-sm font-medium text-[var(--ink)]">{label}</span>
                   <span className="stat-badge">{fmt(downloads)}</span>
                 </div>
                 <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--line)]">
@@ -76,7 +84,7 @@ function EcosystemPage() {
         </ul>
 
         <p className="mt-8 text-xs text-[var(--ink-soft)] font-mono">
-          Source: npmjs.org/downloads API · updates on page load
+          Source: npmjs.org/downloads API · fetched on page load
         </p>
       </section>
     </main>
