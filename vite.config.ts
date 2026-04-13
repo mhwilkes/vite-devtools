@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite-plus'
+import { createRunnableDevEnvironment } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
@@ -6,6 +7,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
+  environments: {
+    ssr: {
+      dev: { createEnvironment: (name, config) => createRunnableDevEnvironment(name, config) },
+    },
+  },
   plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact()],
   server: { port: 3000 },
 
